@@ -1,12 +1,12 @@
 var should = require('should')
-  , soften = require('../index')
+  , harden = require('../index')
   , gulp = require('gulp')
   , map = require('map-stream')
   , fs = require('fs')
   , path = require('path')
   , cb = require('gulp-callback')
   
-describe('soften', function () {
+describe('harden', function () {
   var stream
     , result
     , tmp = path.join(__dirname, '/tmp')
@@ -16,7 +16,7 @@ describe('soften', function () {
   })
   
   it('should receive the stream', function (done) {
-    stream = gulp.src(tmp).pipe(soften(2))
+    stream = gulp.src(tmp).pipe(harden(2))
     done()
   })
   
