@@ -4,6 +4,7 @@ var should = require('should')
   , map = require('map-stream')
   , fs = require('fs')
   , path = require('path')
+  , cb = require('gulp-callback')
   
 describe('soften', function () {
   var stream
@@ -14,20 +15,20 @@ describe('soften', function () {
     fs.createWriteStream(tmp).end('\t\t\t\t')
   })
   
-  it('should receive the stream', function () {
+  it('should receive the stream', function (done) {
     stream = gulp.src(tmp).pipe(soften(2))
+    done()
   })
   
-  it('should pass along the stream', function () {
-    stream.pipe(gulp.dest(__dirname))
+  it('should pass along the stream', function (done) {
+    stream.pipe(gulp.dest(__dirname)).pipe(cb(done))
   })
   
   it('should convert tabs to spaces', function (done) {
-    stream.pipe(map(function (file, callback) {
-      result = String(file.contents)
-      result.should.equal('        ')
+    fs.readFile(tmp, function (err, data) {
+      data.toString().should.equal('        ')
       done()
-    }))
+    });
   })
   
   after(function () {
