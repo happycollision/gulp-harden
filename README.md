@@ -1,13 +1,15 @@
-gulp-soften
+gulp-harden
 ===========
 
-A gulp task that converts hard tabs to spaces.
+A gulp task that converts soft tabs (spaces) to hard tabs (tabs).
+
+Based on [gulp-soften](https://github.com/JacksonGariety/gulp-soften) by [@JacksonGariety](https://github.com/JacksonGariety).
 
 ## Usage
 
-### **`soften([size])`**
+### **`harden([size])`**
 
-`soften()` takes a single parameter, size, which is the number of spaces to convert tabs into.
+`harden()` takes a single parameter, size, which is the number of spaces per tab.
 
 It returns a stream for use in a streaming system like [gulp.js](http://gulpjs.com).
 
@@ -16,11 +18,11 @@ It returns a stream for use in a streaming system like [gulp.js](http://gulpjs.c
 ```javascript
 // Gulpfile.js
 var gulp = require('gulp')
-  , soften = require('gulp-soften')
+  , harden = require('gulp-harden')
 
-gulp.task('soften', function () {
+gulp.task('harden', function () {
   gulp.src('./**/*.js')
-      .pipe(soften(2))
+      .pipe(harden(2))
       .pipe(gulp.dest('./'))
 })
 ```
