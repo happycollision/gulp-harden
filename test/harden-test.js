@@ -12,7 +12,7 @@ describe('harden', function () {
     , tmp = path.join(__dirname, '/tmp')
   
   before(function () {
-    fs.createWriteStream(tmp).end('\t\t\t\t')
+    fs.createWriteStream(tmp).end('        ')
   })
   
   it('should receive the stream', function (done) {
@@ -26,7 +26,7 @@ describe('harden', function () {
   
   it('should convert tabs to spaces', function (done) {
     fs.readFile(tmp, function (err, data) {
-      data.toString().should.equal('        ')
+      data.toString().should.equal('\t\t\t\t')
       done()
     });
   })
